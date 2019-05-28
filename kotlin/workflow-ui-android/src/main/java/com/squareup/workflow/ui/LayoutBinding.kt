@@ -92,7 +92,7 @@ class LayoutBinding<T : Any> private constructor(
     return Scene.getSceneForLayout(container, layoutId, contextForNewView)
         .apply {
           setEnterAction {
-            if (enterAction != null) enterAction(this)
+            enterAction?.invoke(this)
             viewOrNull()?.let {
               Coordinators.bind(it) { coordinatorConstructor(screens, viewRegistry) }
             }
